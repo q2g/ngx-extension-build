@@ -27,6 +27,9 @@ class CreateExtensionPlugin {
             await concat(files, resolve(this.extensionService.extOutDir, `${this.extensionService.extensionName}.js`));
             this.extensionService.createQextFile();
             this.extensionService.createWbFolderFile();
+
+            /** create zip file with all extension files on end */
+            await this.extensionService.createZipFile();
             callback();
         });
     }
