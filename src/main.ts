@@ -8,5 +8,18 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule);
+
+export default {
+    definition: {},
+    initialProperties: {},
+    template: '<h1>simple angular extension</h1>',
+    support: {
+        snapshot: false,
+        export: false,
+        exportData: false
+    },
+    controller: ['$scope', '$element', ($scope: any, $element) => {
+        $element.append(`<my-custom-element></my-custom-element>`);
+    }]
+};
