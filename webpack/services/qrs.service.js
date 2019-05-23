@@ -1,4 +1,4 @@
-const request = require('http').request;
+const request = require('https').request;
 const resolve = require('path').resolve;
 const readFileSync = require('fs').readFileSync;
 const stringify = require('querystring').stringify;
@@ -7,7 +7,7 @@ class QrsService {
 
     constructor() {
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-        this.host = 'localhost';
+        this.host = 'nb-fc-207996';
     }
 
     set certificateRoot(path) {
@@ -22,7 +22,7 @@ class QrsService {
      * @returns {Promise<any>}
      * @memberof QrsService
      */
-    fetchExtension(name) {
+    async fetchExtension(name) {
 
         return new Promise((finalize, reject) => {
 

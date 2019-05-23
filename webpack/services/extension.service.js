@@ -1,6 +1,7 @@
 const resolve = require('path').resolve;
 const pathSeperator = require('path').sep;
 const fs = require('fs');
+const JsZip = require('jszip');
 
 class ExtensionService {
 
@@ -98,6 +99,34 @@ class ExtensionService {
                 process.stderr.write(`Could not create Directory: ${fullPath}`);
             }
         });
+    }
+
+    /** create zip file for extension */
+    async createZipFile() {
+
+        const qextFile = resolve(this.extOutDir, `./${this.extensionName}.qext`);
+        const jsFile   = resolve(this.extOutDir, `./${this.extensionName}.js`)
+        const wbFolder = resolve(this.extOutDir, `./wbfolder.wbl`) ;
+
+        /** create new JsZip instance and add extension specific files */
+        const jsZip = new JsZip();
+        jsZip.file(`${this.extensionName}.qext`, fs.readFileSync(qextFile));
+        jsZip.file(`${this.extensionName}.js`  , fs.readFileSync(jsFile));
+        jsZip.file(`wbfolder.wbl`, fs.readFileSync(wbFolder));
+
+        /** generate zip file content */
+        const zipContent = await jsZip.generateAsync({
+            type: 'nodebuffer',
+            comment: this.qextFileData.description,
+            compression: "DEFLATE",
+            compressionOptions: {
+                level: 9
+            }
+        });
+
+        /** create zip file */
+        fs.writeFileSync(resolve(this.extOutDir, `${this.extensionName}.zip`), zipContent);
+        return true;
     }
 }
 

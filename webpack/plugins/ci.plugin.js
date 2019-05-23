@@ -1,5 +1,7 @@
 const ExtensionService = require('../services/extension.service');
 const QrsService = require('../services/qrs.service');
+const readFileSync = require('fs').readFileSync;
+const resolve = require('path').resolve;
 
 /**
  * continues integration for our extension
@@ -14,6 +16,9 @@ class CiPlugin {
         this.qrsService = new QrsService();
         this.extensionService = ExtensionService.getInstance();
         this.outputDirectory = outDir;
+
+        const dir = process.env.ALLUSERSPROFILE;
+        this.qrsService.certificateRoot = `${dir}\\Qlik\\Sense\\Repository\\Exported Certificates\\.Local Certificates`;
     }
 
     apply(compiler) {
@@ -24,24 +29,22 @@ class CiPlugin {
     }
 
     async deployQrs() {
+        const extensionName = this.extensionService.extensionName;
+        const exists = await this.qrsService.extensionExists(extensionName);
+        const msg = exists ? `QRS$: update extension ${extensionName}` : `QRS$: import extension ${extensionName}`;
+        const outDir = this.extensionService.extOutDir;
+        let file;
 
-        /*
-        const exists = await this.qrsService.extensionExists(this.name);
-            const msg = exists ? `QRS$: update extension ${this.name}` : `QRS$: import extension ${this.name}`;
-            const outDir = this.outDir;
-            let file;
+        if (exists) {
+            file = readFileSync(resolve(outDir, `${extensionName}.js`));
+            await this.qrsService.updateExtension(extensionName, file);
+        } else {
+            file = readFileSync(resolve(outDir, `${extensionName}.zip`));
+            await this.qrsService.importExtension(extensionName, file);
+        }
 
-            if (exists) {
-                file = readFileSync(resolve(this.outDir, `${this.name}.js`));
-                await this.qrsService.updateExtension(this.name, file);
-            } else {
-                file = readFileSync(resolve(this.outDir, `${this.name}.zip`));
-                await this.qrsService.importExtension(this.name, file);
-            }
-
-            process.stdout.write(`\n${msg}\n`);
-            process.stdout.write(`${"-".repeat(msg.length)}\n\n`);
-            */
+        process.stdout.write(`\n${msg}\n`);
+        process.stdout.write(`${"-".repeat(msg.length)}\n\n`);
     }
 }
 
