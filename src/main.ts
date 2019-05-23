@@ -13,13 +13,13 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 export default {
     definition: {},
     initialProperties: {},
-    template: '<h1>simple angular extension</h1>',
+    template: '<h1>das geht hier auch ?</h1>',
     support: {
         snapshot: false,
         export: false,
         exportData: false
     },
-    controller: ['$scope', '$element', ($scope: any, $element) => {
+    controller: ['$scope', '$element', ($scope: any, $element: any) => {
         $element.append(`<my-custom-element></my-custom-element>`);
     }]
 };
