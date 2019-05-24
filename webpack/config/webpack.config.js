@@ -1,32 +1,11 @@
 const ExtensionService = require('../services/extension.service');
 const CreateExtensionPlugin = require('../plugins/create-extension.plugin');
-const CiPlugin = require('../plugins/ci.plugin');
+const DeployExtensionPlugin = require('../plugins/deploy-extension.plugin');
+const ConcatEntryPointsPlugin = require('../plugins/concat-entry-points.plugin');
 const path = require('path');
 
 /**
- * rewrite entry files so we dont create multiple chunks anymore
- * and create only one
- */
-function rewriteEntryFiles(config) {
-    /** 
-     * create new file chunk named "extension" which combine all previous entry points
-     */
-    config.entry['extension-bundle'] = [
-        ...config.entry.polyfills,
-        ...config.entry['es2015-polyfills'],
-        ...config.entry.styles,
-        ...config.entry.main,
-    ];
-
-    /** remove old entry points since we dont need them anymore now */
-    delete config.entry['es2015-polyfills'];
-    delete config.entry['polyfills'];
-    delete config.entry['main'];
-    delete config.entry['styles'];
-}
-
-/**
- * @todo should placed into seperat hook
+ * @todo find better solution for this
  */
 function beforeRun(config) {
     /** configure extension service */
@@ -38,13 +17,16 @@ function beforeRun(config) {
 
 /** export modified webpack config */
 module.exports = (config) => {
-    // add entry files
-    rewriteEntryFiles(config);
     // add custom plugins
-    config.plugins = [...config.plugins, 
+    config.plugins = [
+        ...config.plugins,
+        new ConcatEntryPointsPlugin(),
         new CreateExtensionPlugin(),
-        new CiPlugin()
+        new DeployExtensionPlugin()
     ];
+
+    config.output.jsonpFunction = ExtensionService.getInstance().extensionName;
+    
     /** set library target to umd for requirejs */
     config.output.libraryTarget = "umd";
     /** configure extension service */
