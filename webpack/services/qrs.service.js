@@ -7,7 +7,7 @@ class QrsService {
 
     constructor() {
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-        this.host = 'nb-fc-207996';
+        this.host = 'localhost';
     }
 
     set certificateRoot(path) {
