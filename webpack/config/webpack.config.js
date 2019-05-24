@@ -1,6 +1,6 @@
 const ExtensionService = require('../services/extension.service');
 const CreateExtensionPlugin = require('../plugins/create-extension.plugin');
-const CiPlugin = require('../plugins/ci.plugin');
+const DeployExtensionPlugin = require('../plugins/deploy-extension.plugin');
 const path = require('path');
 
 /**
@@ -41,9 +41,10 @@ module.exports = (config) => {
     // add entry files
     rewriteEntryFiles(config);
     // add custom plugins
-    config.plugins = [...config.plugins, 
+    config.plugins = [
+        ...config.plugins,
         new CreateExtensionPlugin(),
-        new CiPlugin()
+        new DeployExtensionPlugin()
     ];
     /** set library target to umd for requirejs */
     config.output.libraryTarget = "umd";
