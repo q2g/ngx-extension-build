@@ -45,6 +45,9 @@ module.exports = (config) => {
         new CreateExtensionPlugin(),
         new CiPlugin()
     ];
+
+    config.output.jsonpFunction = ExtensionService.getInstance().extensionName;
+    
     /** set library target to umd for requirejs */
     config.output.libraryTarget = "umd";
     /** configure extension service */
