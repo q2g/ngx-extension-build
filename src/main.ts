@@ -13,7 +13,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 export default {
     definition: {},
     initialProperties: {},
-    template: '<h1>das geht hier auch ?</h1>',
+    template: '<h1>q2g-ngx-extension-boilerplate v1.0.1</h1>',
     support: {
         snapshot: false,
         export: false,
