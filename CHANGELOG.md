@@ -1,3 +1,9 @@
+#### 1.1.1 (2019-05-24)
+
+##### Bug Fixes
+
+* **deploy:**  hotfix host not localhost by default (0655b6bf)
+
 ### 1.1.0 (2019-05-24)
 
 ##### New Features
