@@ -71,11 +71,15 @@ class ExtensionService {
             "description": pkgData.description || "", 
             "icon": "",
             "license": pkgData.license || "",
-            "name": this.extensionName,
             "repository": pkgData.repository ? pkgData.repository.url : "",
             "type": "visualization",
             "version": pkgData.version,
-        }, pkgData.qext);
+        }, 
+        pkgData.qext,
+        {
+            id: this.extensionName,
+            name: this.extensionName
+        });
     }
 
     /** create qext file */

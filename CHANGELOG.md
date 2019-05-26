@@ -1,3 +1,9 @@
+#### 1.2.1 (2019-05-26)
+
+##### Bug Fixes
+
+* **build:**  id was used from package.json (c38c39d8)
+
 ### 1.2.0 (2019-05-26)
 
 ##### New Features
