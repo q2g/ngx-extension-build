@@ -3,7 +3,7 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExampleComponent } from './components/example.component';
 
-export const EXTENSION_ID = 'q2g-ngx-example';
+export const EXTENSION_ID = 'q2g-ngx-simple-kpi';
 
 @NgModule({
     declarations: [

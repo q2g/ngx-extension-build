@@ -9,6 +9,7 @@ class ConcatEntryPointsPlugin {
 
     apply(compiler) {
         compiler.hooks.entryOption.tap('RewriteEntryPoints', () => {
+
             const webpackEntry = compiler.options.entry;
             /** 
              * get all entry points and sort them so main is allways at last position
