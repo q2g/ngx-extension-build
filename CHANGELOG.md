@@ -1,14 +1,8 @@
 #### 1.2.1 (2019-05-26)
 
-##### New Features
-
-* **build:**  read out project name from process.args to for dynamic extension names [closes#10] (b157c3a5)
-* **extension:**  add simple kpi extension [closes#9] (65457a57)
-
 ##### Bug Fixes
 
 * **build:**  id was used from package.json (c38c39d8)
-* **deploy:**  hotfix host not localhost by default update to version 1.1.1 (bb714c30)
 
 ### 1.2.0 (2019-05-26)
 
@@ -16,10 +10,6 @@
 
 * **build:**  read out project name from process.args to for dynamic extension names [closes#10] (77463f37)
 * **extension:**  add simple kpi extension [closes#9] (65457a57)
-
-##### Bug Fixes
-
-* **deploy:**  hotfix host not localhost by default update to version 1.1.1 (bb714c30)
 
 #### 1.1.1 (2019-05-24)
 
