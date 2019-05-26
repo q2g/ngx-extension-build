@@ -4,19 +4,14 @@ const DeployExtensionPlugin = require('../plugins/deploy-extension.plugin');
 const ConcatEntryPointsPlugin = require('../plugins/concat-entry-points.plugin');
 const path = require('path');
 
-/**
- * @todo find better solution for this
- */
-function beforeRun(config) {
-    /** configure extension service */
+/** export modified webpack config */
+module.exports = (config) => {
+
     const extensionService     = ExtensionService.getInstance();
     extensionService.rootDir   = config.context;
     extensionService.outDir    = config.output.path;
-    extensionService.extOutDir = path.resolve(config.output.path, '../qlik-extension');
-}
+    extensionService.extOutDir = path.resolve(config.output.path, `../${extensionService.extensionName}`);
 
-/** export modified webpack config */
-module.exports = (config) => {
     // add custom plugins
     config.plugins = [
         ...config.plugins,
@@ -25,11 +20,9 @@ module.exports = (config) => {
         new DeployExtensionPlugin()
     ];
 
-    config.output.jsonpFunction = ExtensionService.getInstance().extensionName;
+    config.output.jsonpFunction = extensionService.extensionName;
     
     /** set library target to umd for requirejs */
     config.output.libraryTarget = "umd";
-    /** configure extension service */
-    beforeRun(config);
     return config;
 };

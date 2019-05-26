@@ -17,6 +17,7 @@ class CreateExtensionPlugin {
 
     apply(compiler) {
         compiler.hooks.afterEmit.tapAsync('ExtensionDone', async (comp, callback) => {
+
             const files = [
                 resolve(this.extensionService.outDir, './runtime.js'),
                 resolve(this.extensionService.outDir, './vendor.js'),
