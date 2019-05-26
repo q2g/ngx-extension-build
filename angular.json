@@ -136,7 +136,7 @@
         }
       }
     },
-    "q2g-ngx-example": {
+    "q2g-ngx-simple-kpi": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -153,9 +153,9 @@
             "customWebpackConfig": {
               "path": "./webpack/config/webpack.config.js"
             },
-            "outputPath": "dist/example-tmp",
+            "outputPath": "dist/q2g-ngx-simple-kpi-tmp",
             "index": "src/index.html",
-            "main": "src/example/main.ts",
+            "main": "src/example/simple-kpi/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [

@@ -9,8 +9,12 @@ clone repository
 ```bash
 cd ngx-extension-build
 npm i
-ng build /* --watch for development mode with auto watch */
-// ng build --prod /* production mode */
+ng build #--watch #development mode with watch
+# ng build --prod /* production mode */
+
+# example for simple kpi extension
+# ng build q2g-ngx-simple-kpi
+# ng build q2g-ngx-simple-kpi --prod
 ```
 
 The extension will automatically imported to Qlik Sense Desktop and Qlik Sense Server (QRS).

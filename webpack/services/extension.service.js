@@ -33,9 +33,20 @@ class ExtensionService {
         return this._extOutDir;
     }
 
+    /** 
+     * read out process arguments, default pattern: [ng build PKG_NAME <options>]
+     * 
+     * but order dosent matters, so filter out first 3 arguments (node.exe, ng command, build argument) and 
+     * all other arguments which starts with "--" and declared as option
+     * 
+     * at this point we could say, extension name is a given project name or 
+     * the name from package.json
+     */
     get extensionName() {
+
         if (!this._extensionName) {
-            this._extensionName = this.packageData.name;
+            const projectName = process.argv.filter((arg, index) => index > 2 && arg.slice(0, 2) !== "--");
+            this._extensionName = projectName.length ? projectName[0] : this.packageData.name;
         }
         return this._extensionName;
     }
@@ -60,7 +71,7 @@ class ExtensionService {
             "description": pkgData.description || "", 
             "icon": "",
             "license": pkgData.license || "",
-            "name": pkgData.name,
+            "name": this.extensionName,
             "repository": pkgData.repository ? pkgData.repository.url : "",
             "type": "visualization",
             "version": pkgData.version,
