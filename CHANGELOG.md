@@ -1,3 +1,9 @@
+## 2.0.0 (2019-05-29)
+
+##### Breaking Changes
+
+* **ngx8:**  update to version angular 8 [closes#13] (08faea8b)
+
 #### 1.2.1 (2019-05-26)
 
 ##### Bug Fixes

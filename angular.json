@@ -164,8 +164,7 @@
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "production": {
@@ -176,7 +175,7 @@
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
