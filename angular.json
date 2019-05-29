@@ -31,11 +31,7 @@
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "scripts": [{
-              "input": "node_modules/document-register-element/build/document-register-element.js"
-            }],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "production": {
@@ -164,8 +160,7 @@
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "production": {
@@ -176,7 +171,7 @@
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,

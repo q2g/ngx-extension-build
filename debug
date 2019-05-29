@@ -1,0 +1,18 @@
+
+Ci$: qrs update extension q2g-ngx-extension-boilerplate
+Ci$: copy q2g-ngx-extension-boilerplate to C:\Users\rhannuschka\Documents\Qlik\Sense\Extensions
+Date: 2019-05-29T08:31:00.061Z
+Hash: ba3a28b2f14fd658d0c5
+Time: 15743ms
+chunk {extension-bundle} extension-bundle-es5.js, extension-bundle-es5.js.map (extension-bundle) 18.5 kB [initial] [rendered]
+chunk {runtime} runtime-es5.js, runtime-es5.js.map (runtime) 6.12 kB [entry] [rendered]
+chunk {scripts} scripts.js, scripts.js.map (scripts) 13.5 kB [entry] [rendered]
+chunk {vendor} vendor-es5.js, vendor-es5.js.map (vendor) 4.1 MB [initial] [rendered]
+
+Date: 2019-05-29T08:31:10.740Z
+Hash: db7a604e39dc47c8f9dd
+Time: 10609ms
+chunk {extension-bundle} extension-bundle-es2015.js, extension-bundle-es2015.js.map (extension-bundle) 17.8 kB [initial] [rendered]
+chunk {runtime} runtime-es2015.js, runtime-es2015.js.map (runtime) 6.12 kB [entry] [rendered]
+chunk {scripts} scripts.js, scripts.js.map (scripts) 13.5 kB [entry] [rendered]
+chunk {vendor} vendor-es2015.js, vendor-es2015.js.map (vendor) 3.65 MB [initial] [rendered]
